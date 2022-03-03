@@ -16,14 +16,14 @@ resource "ibm_is_instance" "instance" {
   name           = "${var.prefix}-${count.index + 1}-instance"
   vpc            = data.ibm_is_vpc.east_lab.id
   profile        = var.profile
-  zone           = element(data.ibm_is_zones.us_east.zones, count.index)
+  zone           = data.ibm_is_zones.us_east.zones[0]
   image          = data.ibm_is_image.image.id
   keys           = [data.ibm_is_ssh_key.sshkey.id]
   resource_group = data.ibm_resource_group.cde_lab_rg.id
   user_data      = file("./install.yml")
   primary_network_interface {
     allow_ip_spoofing = false
-    subnet            = element(data.ibm_is_vpc.east_lab.subnets[*].id, count.index)
+    subnet            = data.ibm_is_vpc.east_lab.subnets[0].id
   }
 
   boot_volume {
