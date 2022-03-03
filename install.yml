@@ -1,0 +1,19 @@
+#cloud-config
+apt_update: true
+apt_upgrade: true
+users:
+  - name: ryan
+    groups: [ sudo ]
+    sudo: [ "ALL=(ALL) NOPASSWD:ALL" ]
+    shell: /bin/bash
+    ssh-authorized-keys:
+    - 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDSWes187pVlIxtp+bCI5ci1Zzn1A1GABqPKETyaztu29CIYf5XkkP5n8XzP/8n7NgeU0+/Z/izJvnT0HBEDin7VUMZTLJL9ERXaZ5KRwTAnQOx1DsueQgCI9/ZBahDeDVE2hvvbh/DCgCdD0o6SagVfOB9bO7/NJlZNwXSV5Xc84sWY4xgc0voLpNF8K648IsWGY27XbwHuVbb7blR6BKZd7ETf+DXMTEIdZr3YQ79bm+371T2LPtqsc0xYUHMXVCw8vyS0E6OeQxppmVLaR4NycXcW6/gj2aDGS6gHx0DMUA2pB3Snw/DK7FZ14fBZWw66wHkejWeR7pXfw1sqGaUUbVH66FwCGiKAZzm0pzneLVTaSUPg8KDtImREWW1EE7nadGDW/AHpRWVlc1cEqTvPqt1qmhut+AEnFTrQ1g9f4kh5cr3JzHXGUiAuzCZa9swQcEO8mEuWFUbzK82OxPqt00wMz567HkX1gVfHHMWcgJYYo99BR/DMKT3Xp4ULLNC5pTw5c5gBNan6SvhDVFIfibCmQh6Z9vBu7cgfpxliAOXN1B+4DSxuvjuDGYHEguNni4lDcN6MWnwQsvbpMOQGFr4vS89R0drf6LpkcQlbxKsJFgE6sJIXjkToQaEYf/4ieyUjjPmU8NkQFWx04USKpyQ2h7KtadsbzChk+bp1Q== ryan@europa'
+    - 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDxcx9wbVCHjxyJxZwho+o2TnvkBPk/IifoJfAcLbgtO7QAI8EWB2p4eDtlPo2zAoTfSPS9TiCUUffBcXwpFLKLR2vvht5+Me4pozqTl9fDbWOWmfNWN8dLHR1oruZm+kYLL0CPt99KHXtYQnxsYfFzu37ZVOrzT6MNzfk7aYwojDOni6jt9F+HjdXr+6d4QUjBVRmdUAUcxUjgCh1efj7Q6NAXOFUP/oAHRJsfmYKLH3YvsjFy7OT67DSDoMEldHHOL9EWmQcQtOLY+H/HJYl+87jINJ4AZB5D4Tozi7QLN6tvoIhTPZHwWAyg4HasE3VFjwBlIunEnFkmMxolJfLp ryan@hyperion.local'
+    - 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGps4bNYLE9NitCKsZuSEk7OUli7EBs/BvTHXgAKN6Ec9/BqVHBcbvhBRmGaRi5cvVYu5qo4zSegMlcAfqZ2mijI3vm9GQi+0RkvvIMWO5j2MmRaaTjjOAZRSvPvKNhOJ1O47OCYSr1hozW+7l4zVPUPw4rqugQETBb2nU2CXnY2naCll+T/JE+vkAswICSZl1PJwkUyxyGRIsey1m3VPSlYHVAhKAYDXpWgvI7QHE7m+dydroZNzgdBdQ93KgL3k/wU7OwJVy4WR1lOTcg4yN3Lsb1zUsUg8EgAwaW9ytl9OlVdId04yM1t4iTaBQ63aO/OKD+2fQWILPtJjasWap ryan@tycho.local'
+packages:
+    - python3-apt
+    - jq 
+    - git 
+    - build-essential
+final_message: "The system is finally up, after $UPTIME seconds"
+output: {all: '| tee -a /var/log/cloud-init-output.log'}
